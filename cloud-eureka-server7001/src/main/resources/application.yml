@@ -10,4 +10,9 @@ eureka:
     fetch-registry: false   #表示自己就是注册中心，职责是维护服务实例，并不需要去检索服务
     service-url:
       defaultZone: http://eureka7002.com:7002/eureka/
+  server:
+    #关闭自我保护
+    enable-self-preservation: false
+    #eureka和服务之间的通信时间
+    eviction-interval-timer-in-ms: 90000
 
