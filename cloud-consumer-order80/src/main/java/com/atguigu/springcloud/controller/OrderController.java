@@ -15,19 +15,19 @@ import org.springframework.web.client.RestTemplate;
 @Slf4j
 public class OrderController {
 
-    final static String provider_url="http://localhost:8001";
+    final static String PAYMENT_SERVICE ="http://CLOUD-PAYMENT-SERVICE";
 
     @Autowired
     private RestTemplate restTemplate;
 
     @PostMapping(value = "/consumer/payment/create")
     public CommonResult create(Payment payment){
-        return restTemplate.postForObject(provider_url+"/payment/create",payment,CommonResult.class);
+        return restTemplate.postForObject(PAYMENT_SERVICE +"/payment/create",payment,CommonResult.class);
     }
     @GetMapping(value = "/consumer/payment/get/{id}")
     public CommonResult getPaymentById(@PathVariable("id") Long id){
         log.info("-----------:"+id);
-        return restTemplate.getForObject(provider_url+"/payment/get/"+id,CommonResult.class);
+        return restTemplate.getForObject(PAYMENT_SERVICE +"/payment/get/"+id,CommonResult.class);
     }
 
 }
