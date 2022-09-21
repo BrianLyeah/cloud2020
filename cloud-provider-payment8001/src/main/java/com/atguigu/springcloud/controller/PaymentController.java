@@ -62,5 +62,11 @@ public class PaymentController {
         }
         return new CommonResult(200,"service msg", discoveryClient);
     }
+
+    @GetMapping(value = "/payment/timeout")
+    public String timeout() throws InterruptedException {
+        Thread.sleep(3000);
+        return serverPort;
+    }
 }
 
