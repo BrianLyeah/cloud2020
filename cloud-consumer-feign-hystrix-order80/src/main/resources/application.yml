@@ -7,8 +7,8 @@ spring:
     name: cloud-provider-hystrix-order
 
 ribbon:
-  ReadTimeout: 5000
-  ConnectTimeout: 5000
+  ReadTimeout: 6000
+  ConnectTimeout: 6000
 
 eureka:
   client:
@@ -18,3 +18,19 @@ eureka:
 feign:
   hystrix:
     enabled: true
+#  client:
+#    config:
+#      default:
+#        connectTimeout: 10000 #单位毫秒
+#        readTimeout: 10000 #单位毫秒
+
+hystrix:
+  command:
+    default:  #default全局有效，service id指定应用有效
+      execution:
+        timeout:
+          #如果enabled设置为false，则请求超时交给ribbon控制,为true,则超时作为熔断根据
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000 #断路器超时时间，默认1000ms

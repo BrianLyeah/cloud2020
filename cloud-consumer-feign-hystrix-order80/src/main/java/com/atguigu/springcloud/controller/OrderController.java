@@ -7,14 +7,17 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
+
 @RestController
 @Slf4j
-@DefaultProperties(defaultFallback = "order_TimeOutHandler")
+//@DefaultProperties(defaultFallback = "order_TimeOutHandler")
 public class OrderController {
 
     @Autowired
@@ -30,13 +33,12 @@ public class OrderController {
         return result;
     }
 
-//    @HystrixCommand(fallbackMethod = "order_TimeOutHandler",commandProperties = {
-//            @HystrixProperty(name="execution.isolation.thread.timeoutInMilliseconds",value="1500")
+//    @HystrixCommand(commandProperties = {
+//            @HystrixProperty(name="execution.isolation.thread.timeoutInMilliseconds",value="6000")
 //    })
-    @HystrixCommand
     @GetMapping("/consumer/hystrix/timeout/{id}")
     public String paymentInfo_TimeOut(@PathVariable("id") Integer id){
-        int i=1/0;
+//        int i=1/0;
         String result = orderService.paymentInfo_TimeOut(id);
         log.info("*******result:"+result);
         return result;
