@@ -49,6 +49,12 @@ public class PaymentController {
         }
     }
 
+    @GetMapping(value = "/payment/lb/{id}")
+    public CommonResult paymentLb(@PathVariable("id") Long id){
+
+        return new CommonResult(200,"查询成功,端口号："+serverPort);
+    }
+
 
     @GetMapping(value = "/payment/discovery")
     public CommonResult discovery(){
