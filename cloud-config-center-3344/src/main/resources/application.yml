@@ -9,7 +9,21 @@ spring:
         git:
           uri: https://github.com/BrianLyeah/config-server.git
           default-label: dev
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+#配置消息总线刷新点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'bus-refresh'
+
 eureka:
   client:
     service-url:
       defaultZone: http://eureka7001.com:7001/eureka
+
