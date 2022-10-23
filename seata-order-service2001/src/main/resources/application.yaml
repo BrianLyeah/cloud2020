@@ -1,0 +1,57 @@
+server:
+  port: 2001
+
+spring:
+  application:
+    name: seata-order-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    alibaba:
+      seata:
+        #自定义事务组名称需要与seata-server中的对应
+        tx-service-group: fsp_tx_group
+        config:
+          type: nacos
+          nacos:
+            server-addr: 127.0.0.1:8848
+            group: "SEATA_GROUP"
+            dataId: "seataServer.properties"
+            username: "nacos"
+            password: "nacos"
+#        registry:
+#          type: nacos
+#          nacos:
+#            server-addr: 127.0.0.1:8848
+#            #可选
+#            username: nacos
+#            #可选
+#            password: nacos
+#            #可选
+#            application: seata-server
+#            #默认值和 config 的 SEATA_GROUP 不一样
+#            group: SEATA_GROUP
+#            # 可选  默认
+#            cluster: default
+
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.56.128:3306/seata_order?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: Lxl19921121.
+
+
+
+
+feign:
+  hystrix:
+    enabled: false
+
+logging:
+  level:
+    io:
+      seata: info
+
+mybatis:
+  mapperLocations: classpath:mapper/*.xml

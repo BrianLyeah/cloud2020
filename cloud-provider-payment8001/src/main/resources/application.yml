@@ -7,7 +7,7 @@ spring:
     name: cloud-payment-service
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
-    driver-class-name: org.gjt.mm.mysql.Driver
+    driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://192.168.56.128:3306/db2019?useUnicode=true&characterEncoding=utf-8&useSSL=false
     username: root
     password: Lxl19921121.
